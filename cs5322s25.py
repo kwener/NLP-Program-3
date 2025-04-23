@@ -16,6 +16,31 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 
+def read_labeled_sentences(filename):
+    data = []
+    with open(filename, 'r') as file:
+        start_reading = False
+        for line in file:
+            line = line.strip()
+
+            # Skip empty lines
+            if not line:
+                continue
+
+            # Skip initial lines until we encounter a line starting with '1' or '2' followed by a space
+            if not start_reading:
+                # Check if the line starts with '1' or '2' followed by a space (or tab)
+                if line[:1].isdigit() and line[1] in [' ', '\t']:
+                    start_reading = True
+                else:
+                    continue  # still skipping the definition lines
+
+            if start_reading:
+                label_str, sentence = line.split(maxsplit=1)  # split only once to get the label and sentence
+                label = int(label_str)
+                data.append((sentence, label))  # Store sentence with its label
+    return data
+
 
 
 def get_embedding(sentence, word):
@@ -96,43 +121,43 @@ def WSD_Test_deed(words):
 
 camper_data = [
     # Sense 1: Van used for camping
-    ("They rented a camper for their road trip through the mountains.", 1),
-    ("The old camper had a tiny kitchenette and a fold-out bed.", 1),
-    ("We parked the camper near the lake and set up a fire pit.", 1),
-    ("Her dream is to convert a van into a cozy little camper.", 1),
-    ("The camper was stocked with food and sleeping bags.", 1),
-    ("They bought a new camper to travel across the country.", 1),
-    ("The camper's roof popped up to create extra headroom.", 1),
-    ("He lives in a camper and works remotely from national parks.", 1),
-    ("They spent the night in a camper on the beach.", 1),
-    ("The camper broke down on the side of the highway.", 1),
-    ("They installed solar panels on the roof of their camper.", 1),
-    ("I saw a vintage camper parked at the music festival.", 1),
-    ("They towed a camper behind their truck during vacation.", 1),
-    ("Their camper has a small bathroom and sleeping area.", 1),
-    ("The family cooked breakfast inside their camper.", 1),
-    ("The family will be so excited when they see their camper!", 1),
+    ("They rented a camper for their road trip through the mountains.", 2),
+    ("The old camper had a tiny kitchenette and a fold-out bed.", 2),
+    ("We parked the camper near the lake and set up a fire pit.", 2),
+    ("Her dream is to convert a van into a cozy little camper.", 2),
+    ("The camper was stocked with food and sleeping bags.", 2),
+    ("They bought a new camper to travel across the country.", 2),
+    ("The camper's roof popped up to create extra headroom.", 2),
+    ("He lives in a camper and works remotely from national parks.", 2),
+    ("They spent the night in a camper on the beach.", 2),
+    ("The camper broke down on the side of the highway.", 2),
+    ("They installed solar panels on the roof of their camper.", 2),
+    ("I saw a vintage camper parked at the music festival.", 2),
+    ("They towed a camper behind their truck during vacation.", 2),
+    ("Their camper has a small bathroom and sleeping area.", 2),
+    ("The family cooked breakfast inside their camper.", 2),
+    ("The family will be so excited when they see their camper!", 2),
 
     # Sense 2: Child at a summer/day camp
-    ("I would rather sleep with the campers", 2),
-    ("The family likes the camper", 2),
-    ("Every camper at the summer camp had to bring a sleeping bag.", 2),
-    ("The counselor made sure each camper was accounted for.", 2),
-    ("She became friends with another camper in her bunk.", 2),
-    ("One camper got homesick and called their parents.", 2),
-    ("The camper won a medal in the canoe race.", 2),
-    ("Every camper received a t-shirt at the end of camp.", 2),
-    ("The camper woke up early for morning activities.", 2),
-    ("They assigned each camper to a different group.", 2),
-    ("That camper performed a skit during talent night.", 2),
-    ("The youngest camper in the group needed help tying shoes.", 2),
-    ("Each camper was responsible for cleaning their area.", 2),
-    ("The camper packed their things before heading home.", 2),
-    ("As a returning camper, she helped welcome the new kids.", 2),
-    ("One camper got stung by a bee on the nature hike.", 2),
-    ("The campfire stories kept every camper entertained.", 2)
+    ("Every camper at the summer camp had to bring a sleeping bag.", 1),
+    ("The counselor made sure each camper was accounted for.", 1),
+    ("She became friends with another camper in her bunk.", 1),
+    ("One camper got homesick and called their parents.", 1),
+    ("The camper won a medal in the canoe race.", 1),
+    ("Every camper received a t-shirt at the end of camp.", 1),
+    ("The camper woke up early for morning activities.", 1),
+    ("They assigned each camper to a different group.", 1),
+    ("That camper performed a skit during talent night.", 1),
+    ("The youngest camper in the group needed help tying shoes.", 1),
+    ("Each camper was responsible for cleaning their area.", 1),
+    ("The camper packed their things before heading home.", 1),
+    ("As a returning camper, she helped welcome the new kids.", 1),
+    ("One camper got stung by a bee on the nature hike.", 1),
+    ("The campfire stories kept every camper entertained.", 1)
 ]
 
+#camper_data_2 = read_labeled_sentences("/Users/kierstenwener/Downloads/prog3/camper.txt")
+#camper_data_2= camper_data_2+camper_data
 # Shuffle the list randomly
 random.shuffle(camper_data)
 
