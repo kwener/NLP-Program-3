@@ -113,7 +113,40 @@ def do_camper_test(training):
 
 
 def WSD_Test_camper(words):
-    x = 0
+    # Load the trained model
+    clf = joblib.load('./camper_model.pkl')
+    
+    # Process each sentence and collect valid embeddings with their indices
+    embeddings = []
+    valid_indices = []
+    
+    for idx, sentence in enumerate(words):
+        embedding = get_embedding(sentence, "camper")
+        if embedding is not None:
+            embeddings.append(embedding)
+            valid_indices.append(idx)
+    
+    # Convert to numpy array if we have any valid embeddings
+    if embeddings:
+        X = np.stack(embeddings)
+        predictions = clf.predict(X)
+    else:
+        # If no valid embeddings found, return random predictions as fallback
+        predictions = np.random.choice([1, 2], size=len(words))
+        return predictions.tolist()
+    
+    # Create full predictions list (1 or 2) for all sentences
+    full_predictions = []
+    pred_idx = 0
+    for i in range(len(words)):
+        if i in valid_indices:
+            full_predictions.append(predictions[pred_idx])
+            pred_idx += 1
+        else:
+            # For sentences where we couldn't get embedding, use random prediction
+            full_predictions.append(random.choice([1, 2]))
+    
+    return full_predictions
 
 def WSD_Test_conviction(words):
     x = 0
