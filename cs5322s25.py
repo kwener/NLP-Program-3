@@ -3,6 +3,7 @@
     #tag them accordingly, and then this is the dataset
 #train model that predicts the sense (either 1 or 2)
 import torch
+import joblib # to save the model 
 import numpy as np
 import random
 from transformers import BertTokenizerFast, BertModel
@@ -101,13 +102,15 @@ def do_camper_test(training):
     print("Cross-validation scores:", scores)
     print("Mean accuracy:", scores.mean())
 
-    '''
+    
     clf = LogisticRegression(max_iter=100)
     clf.fit(X_train, y_train)
 
+    joblib.dump(clf, './camper_model.pkl') 
+
     y_pred = clf.predict(X_test)
     print("Accuracy:", accuracy_score(y_test, y_pred))
-'''
+
 
 def WSD_Test_camper(words):
     x = 0
