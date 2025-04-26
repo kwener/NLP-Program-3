@@ -143,10 +143,11 @@ def WSD_Test_camper(words):
             full_predictions.append(predictions[pred_idx])
             pred_idx += 1
         else:
-            # For sentences where we couldn't get embedding, use random prediction
+            # For sentences where we couldn't get embedding, use random prediction as default
             full_predictions.append(random.choice([1, 2]))
     
-    return full_predictions
+    # nmpy makes it int.64 as a default
+    return [int(pred) for pred in full_predictions] 
 
 def WSD_Test_conviction(words):
     x = 0
