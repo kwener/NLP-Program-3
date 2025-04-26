@@ -197,4 +197,14 @@ camper_data = [
 # Shuffle the list randomly
 random.shuffle(camper_data)
 
+# testing for the wsd: Camper
+test_sentences = [
+    "We slept in a camper van",
+    "The camper built a fire"
+]
+
 do_camper_test(camper_data)
+
+# testing for wsd: camper
+predictions = WSD_Test_camper(test_sentences)
+print(predictions)
