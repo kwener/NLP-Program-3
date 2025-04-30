@@ -228,10 +228,28 @@ def WSD_Test_deed(sentences):
     return load_and_predict(sentences, "deed", "deed_model.pkl")
 
 test_sentences = [
-    "We slept in a camper van",
-    "The camper built a fire",
-    "I wish I had a camper",
-    "The camper had two beds",
-    "The camper ate hotdogs"
+  "After years of appeals, the conviction was finally overturned.",
+"He stands by his conviction, even when it's unpopular.",
+"The conviction resulted in a ten-year prison sentence.",
+"Her conviction about the need for education reform is inspiring.",
+"He was released after the wrongful conviction was dismissed.",
+"She argued her point with unwavering conviction.",
+"The jury reached a conviction in under an hour.",
+"He pursued his goals with quiet conviction.",
+"His conviction for fraud shocked the entire community.",
+"Despite criticism, she expressed her conviction clearly.",
+"The conviction led to a lengthy prison term.",
+"Her conviction that art can change lives was contagious.",
+"DNA evidence was used to overturn the original conviction.",
+"They admired her conviction and sense of purpose.",
+"The judge handed down the conviction without hesitation.",
+"She delivered her speech with deep conviction.",
+"The conviction was based on eyewitness testimony.",
+"He always acts according to his personal conviction.",
+"That conviction ended his political career.",
+"She followed her conviction instead of chasing popularity."
+
+
 ]
-print(WSD_Test_camper(test_sentences))
+print(WSD_Test_conviction(test_sentences))
+
