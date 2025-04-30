@@ -2,6 +2,7 @@
     #make sure training data is list of suples 0 is the sentence, 1 is the sense of the word
     #tag them accordingly, and then this is the dataset
 #train model that predicts the sense (either 1 or 2)
+"""
 import torch
 import joblib # to save the model 
 import numpy as np
@@ -198,14 +199,39 @@ camper_data = [
 # Shuffle the list randomly
 random.shuffle(camper_data)
 
-# testing for the wsd: Camper
+# testing for the wsd: Camper, 1 is the can, 2 is the person
 test_sentences = [
     "We slept in a camper van",
-    "The camper built a fire"
+    "The camper built a fire",
+    "I wish I had a camper",
+    "The camper had two beds",
+    "The camper ate hotdogs"
 ]
 
-do_camper_test(camper_data)
+#do_camper_test(camper_data)
 
 # testing for wsd: camper
 predictions = WSD_Test_camper(test_sentences)
 print(predictions)
+"""""
+
+
+from model_helper_funcs import get_embedding, load_and_predict
+
+def WSD_Test_camper(sentences):
+    return load_and_predict(sentences, "camper", "camper_model.pkl")
+
+def WSD_Test_conviction(sentences):
+    return load_and_predict(sentences, "conviction", "conviction_model.pkl")
+
+def WSD_Test_deed(sentences):
+    return load_and_predict(sentences, "deed", "deed_model.pkl")
+
+test_sentences = [
+    "We slept in a camper van",
+    "The camper built a fire",
+    "I wish I had a camper",
+    "The camper had two beds",
+    "The camper ate hotdogs"
+]
+print(WSD_Test_camper(test_sentences))

@@ -1,0 +1,4 @@
+-clf = joblib.load('./camper_model.pkl')
+predictions = clf.predict(X)
+
+to load and use the trained model
