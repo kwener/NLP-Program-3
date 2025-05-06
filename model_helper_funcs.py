@@ -43,6 +43,14 @@ def read_labeled_sentences(filename):
                 data.append((sentence, label))  # Store sentence with its label
     return data
 
+def read_sentences(filename):
+    sentences = []
+    with open(filename, 'r') as file:
+        for line in file:
+            line = line.strip()
+            if line:  # Skip empty lines
+                sentences.append(line)
+    return sentences
 
 
 def get_embedding(sentence, word):
@@ -57,12 +65,14 @@ def get_embedding(sentence, word):
     found = False
     for word in target_words:
         start_char = sentence_lower.find(word)
+        print(start_char)
         if start_char != -1:
             end_char = start_char + len(word)
             found = True
             break
     if not found:
         print(f"No target word found in: {sentence}")
+        print(word)
         return None
     
     target_token_indices = []
@@ -133,6 +143,14 @@ def load_and_predict(sentences, word, model_path):
     # nmpy makes it int.64 as a default
     return [int(pred) for pred in full_predictions]
 
+def save_result_to_file(word, result_array):
+
+    file_name = f"result_{word}_kierstenwener.txt"
+
+    # Write to file
+    with open(file_name, "w") as f:
+        for value in result_array:
+            f.write(f"{value}\n")
 
 
 
