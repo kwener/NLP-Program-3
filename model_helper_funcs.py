@@ -1,7 +1,4 @@
-#first, use the training files to find the bert vector for the target word in each sentence
-    #make sure training data is list of suples 0 is the sentence, 1 is the sense of the word
-    #tag them accordingly, and then this is the dataset
-#train model that predicts the sense (either 1 or 2)
+
 import torch
 import joblib # to save the model 
 import numpy as np
