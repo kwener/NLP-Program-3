@@ -62,14 +62,12 @@ def get_embedding(sentence, word):
     found = False
     for word in target_words:
         start_char = sentence_lower.find(word)
-        print(start_char)
         if start_char != -1:
             end_char = start_char + len(word)
             found = True
             break
     if not found:
         print(f"No target word found in: {sentence}")
-        print(word)
         return None
     
     target_token_indices = []

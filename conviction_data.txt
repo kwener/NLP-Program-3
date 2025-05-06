@@ -57,3 +57,5 @@
 2 The court handed down a conviction after reviewing all the evidence.
 2 His previous convictions made it difficult for him to find a job.
 2 The conviction for theft resulted in a three-year prison sentence.
+1 He has conviction about his belief.
+2 He has a conviction. 
