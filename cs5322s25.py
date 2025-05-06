@@ -15,11 +15,11 @@ def WSD_Test_deed(sentences):
     results = load_and_predict(sentences, "deed", "deed_model.pkl")
     print(f"Deed : {results}")
     return results
-
+'''
 deed_test_sentences = read_sentences("deed_test.txt")
 conviction_test_sentences = read_sentences("conviction_test.txt")
 camper_test_sentences = read_sentences("camper_test.txt")
-'''
+
 #conviction: 1 - unshakable belief, 2 - legal sense
 save_result_to_file("conviction", WSD_Test_conviction(conviction_test_sentences))
 #Camper: 1 - the person, 2 - the vehicle
